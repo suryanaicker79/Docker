@@ -19,7 +19,12 @@ CMD ["./form"]
 
 sudo docker build -t multiform . -f Dockerfile.multi
 sudo docker run -it -p 8080:9000 multiform
-
+***************************************************************************************************************************************
 //Pushing the docker image into docker hub
 
+
+docker login --username=use_your_own --password=use_your_own
+sudo docker tag 7797f0630cd4 suryanaicker/multiform:multidocker
+sudo docker push suryanaicker/multiform
+sudo docker push suryanaicker/multiform:multidocker
 
