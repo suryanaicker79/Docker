@@ -1,0 +1,23 @@
+---Note:- I am using sudo since my docker is running at a non-root directory
+
+
+
+sudo docker build -t myform .
+
+sudo docker images
+
+sudo docker run -it -p 8080:9000 myform
+
+
+
+//To push it to docker hub, use the following commands on terminal
+
+
+
+docker login --username=use_your_own --password=use_your_own
+
+sudo docker tag 7797f0630cd4 suryanaicker/myform:form
+
+sudo docker push suryanaicker/myform
+
+sudo docker push suryanaicker/myform:form
