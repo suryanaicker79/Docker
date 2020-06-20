@@ -1,0 +1,57 @@
+//File name is Dockerfile.multi
+
+
+
+FROM golang:latest
+
+RUN mkdir /app
+
+WORKDIR /app
+
+COPY form.go .
+
+COPY form.html .
+
+COPY processor.html .
+
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o form
+
+
+
+FROM alpine:3.10
+
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /root/
+
+COPY --from=0 app .
+
+CMD ["./form"]
+
+***************************************************************************************************************************************
+
+
+
+//Steps to build docker image:-
+
+
+
+sudo docker build -t multiform . -f Dockerfile.multi
+
+sudo docker run -it -p 8080:9000 multiform
+
+***************************************************************************************************************************************
+
+//Pushing the docker image into docker hub
+
+
+
+
+
+docker login --username=use_your_own --password=use_your_own
+
+sudo docker tag 7797f0630cd4 suryanaicker/multiform:multidocker
+
+sudo docker push suryanaicker/multiform
+
+sudo docker push suryanaicker/multiform:multidocker
