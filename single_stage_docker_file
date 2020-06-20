@@ -1,11 +1,21 @@
+
+//File name must be "Dockerfile" that should be created in the same directory as the Go web app
+
+FROM golang:latest
+COPY form.go .
+COPY form.html .
+Copy processor.html .
+RUN go build form.go
+CMD ["./form"]
+
+
+
 ---Note:- I am using sudo since my docker is running at a non-root directory
 
 
 
 sudo docker build -t myform .
-
 sudo docker images
-
 sudo docker run -it -p 8080:9000 myform
 
 
@@ -15,9 +25,6 @@ sudo docker run -it -p 8080:9000 myform
 
 
 docker login --username=use_your_own --password=use_your_own
-
 sudo docker tag 7797f0630cd4 suryanaicker/myform:form
-
 sudo docker push suryanaicker/myform
-
 sudo docker push suryanaicker/myform:form
